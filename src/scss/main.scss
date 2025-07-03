@@ -62,6 +62,10 @@ body {
   width: calc(100% - 40px);
   max-width: 1200px;
   transition: all $transition-normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-24;
   
   @include breakpoint(md) {
     width: calc(100% - 80px);
@@ -69,14 +73,12 @@ body {
 }
 
 .nav {
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #34302D;
   border-radius: 60px;
-  padding: 12px 24px;
+  padding: 24px 32px;
   
   @include breakpoint(md) {
-    padding: 16px 32px;
+    padding: 24px 32px;
   }
 
   &__container {
@@ -124,14 +126,25 @@ body {
   }
 
   &__item {
+    // Hide all navigation items on mobile except CTA
+    @media (max-width: $breakpoint-lg) {
+      display: none;
+    }
+
     &--cta {
       margin-left: $spacing-4;
+      
+      // Show CTA button on mobile
+      @media (max-width: $breakpoint-lg) {
+        display: block;
+        margin-left: 0;
+      }
     }
   }
 
   &__link {
     font-family: $font-family-secondary;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
@@ -148,6 +161,32 @@ body {
     &.active {
       color: white;
       background: rgba(255, 255, 255, 0.15);
+    }
+
+    &--button {
+        font-family: $font-family-secondary;
+        border: 1px solid #6C625A;
+        text-transform: uppercase;
+        border-radius: 25px;
+        font-weight: 500;
+        padding: 8px 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // Show button on mobile
+        @media (max-width: $breakpoint-lg) {
+          display: flex;
+          font-size: 12px;
+          padding: 6px 16px;
+        }
+
+        &:hover {
+          background: $primary;
+          color: white;
+          transition: all $transition-normal;
+        }
     }
 
     &--cta {
@@ -169,108 +208,25 @@ body {
     }
   }
 
+  &__mobile-cta {
+    display: none;
+    
+    @media (max-width: $breakpoint-lg) {
+      display: block;
+    }
+  }
+
   &__toggle {
     display: none;
-    @include flex-center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    transition: all $transition-normal;
-
-    @media (max-width: $breakpoint-lg) {
-      display: flex;
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    &[aria-expanded="true"] {
-      background: rgba(255, 255, 255, 0.2);
-      
-      .nav__hamburger {
-        background-color: transparent;
-        transform: rotate(45deg);
-        
-        &::before {
-          transform: rotate(90deg) translateX(6px);
-        }
-        
-        &::after {
-          transform: rotate(90deg) translateX(-6px);
-        }
-      }
-    }
   }
 
   &__hamburger {
-    width: 20px;
-    height: 2px;
-    background-color: white;
-    position: relative;
-    transition: all $transition-normal;
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background-color: white;
-      transition: all $transition-normal;
-    }
-
-    &::before {
-      top: -6px;
-    }
-
-    &::after {
-      top: 6px;
-    }
+    display: none;
   }
 
-  // Mobile menu styles
+  // Mobile menu styles - Not needed anymore but keeping for future reference
   &__menu--mobile {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: $spacing-6;
-    flex-direction: column;
-    gap: $spacing-4;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    z-index: $z-modal;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all $transition-normal;
-
-    @include breakpoint(md) {
-      left: 40px;
-      right: 40px;
-    }
-
-    .nav__link {
-      width: 100%;
-      text-align: center;
-      padding: $spacing-4;
-      font-size: 16px;
-      border-radius: 12px;
-    }
-
-    .nav__link--cta {
-      margin-top: $spacing-4;
-      background: $primary;
-      
-      &:hover {
-        background: $primary-dark;
-      }
-    }
+    display: none;
   }
 }
 
@@ -735,11 +691,33 @@ body {
   }
   
   .nav {
-    padding: 10px 20px;
+    padding: 16px 20px;
     border-radius: 50px;
+    
+    &__container {
+      justify-content: space-between;
+      align-items: center;
+    }
     
     &__logo {
       font-size: 18px;
+    }
+    
+    &__menu {
+      display: none;
+    }
+    
+    &__mobile-cta {
+      display: block;
+    }
+    
+    &__link--button {
+      font-size: 12px;
+      padding: 8px 16px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 25px;
+      color: rgba(255, 255, 255, 0.9);
     }
   }
 }
@@ -751,7 +729,7 @@ body {
   }
   
   .nav {
-    padding: 8px 16px;
+    padding: 12px 16px;
     border-radius: 40px;
     
     &__logo {
@@ -759,17 +737,11 @@ body {
       line-height: 0.9;
     }
     
-    &__toggle {
-      width: 40px;
-      height: 40px;
-    }
-    
-    &__hamburger {
-      width: 18px;
+    &__link--button {
+      font-size: 11px;
+      padding: 6px 12px;
     }
   }
-
-
 
   .features,
   .about-course,
@@ -790,24 +762,18 @@ body {
   }
   
   .nav {
-    padding: 6px 12px;
+    padding: 4px;
     border-radius: 30px;
     
     &__logo {
       font-size: 14px;
     }
     
-    &__toggle {
-      width: 36px;
-      height: 36px;
-    }
-    
-    &__hamburger {
-      width: 16px;
+    &__link--button {
+      font-size: 10px;
+      padding: 6px 10px;
     }
   }
-
-
 
   .features__title,
   .about-course__title,
