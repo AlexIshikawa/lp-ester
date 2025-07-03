@@ -1,0 +1,538 @@
+// =============================================
+// MAIN STYLES
+// =============================================
+
+// Use partials with modern Sass syntax
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'reset';
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@300;400;500;600;700&display=swap');
+
+// Base styles
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  color: $text-primary;
+  background-color: $bg-primary;
+  line-height: $line-height-normal;
+}
+
+// Utility classes
+.container {
+  @include container;
+}
+
+// Button components
+.btn {
+  &--primary {
+    @include button-primary;
+  }
+
+  &--secondary {
+    @include button-secondary;
+  }
+}
+
+// =============================================
+// HEADER
+// =============================================
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $border-color;
+  transition: all $transition-normal;
+}
+
+.nav {
+  &__brand {
+    @include flex-center;
+    gap: $spacing-2;
+  }
+
+  &__logo {
+    @include flex-center;
+    transition: transform $transition-normal;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .container {
+    @include flex-between;
+    padding-top: $spacing-4;
+    padding-bottom: $spacing-4;
+  }
+
+  &__menu {
+    @include flex-center;
+    gap: $spacing-8;
+
+    @media (max-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__link {
+    font-weight: $font-weight-medium;
+    color: $text-secondary;
+    transition: color $transition-normal;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius;
+    background-color: transparent;
+    cursor: pointer;
+
+    @media (max-width: $breakpoint-md) {
+      display: flex;
+    }
+  }
+
+  &__hamburger {
+    width: 24px;
+    height: 2px;
+    background-color: $text-primary;
+    position: relative;
+    transition: all $transition-normal;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: $text-primary;
+      transition: all $transition-normal;
+    }
+
+    &::before {
+      top: -8px;
+    }
+
+    &::after {
+      top: 8px;
+    }
+  }
+}
+
+// =============================================
+// HERO SECTION
+// =============================================
+
+.hero {
+  padding-top: $spacing-32;
+  padding-bottom: $spacing-24;
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+  overflow: hidden;
+
+  @include breakpoint(md) {
+    padding-top: $spacing-32;
+    padding-bottom: $spacing-32;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-12;
+    align-items: center;
+
+    @include breakpoint(lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-16;
+    }
+  }
+
+  &__content {
+    text-align: center;
+
+    @include breakpoint(lg) {
+      text-align: left;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-6;
+    color: $text-primary;
+
+    @include breakpoint(md) {
+      font-size: $font-size-5xl;
+    }
+
+    @include breakpoint(lg) {
+      font-size: $font-size-6xl;
+    }
+  }
+
+  &__highlight {
+    @include gradient-text(linear-gradient(135deg, $primary, $primary-dark));
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    margin-bottom: $spacing-8;
+    max-width: 600px;
+
+    @include breakpoint(lg) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-4;
+    flex-wrap: wrap;
+
+    @include breakpoint(lg) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__image {
+    @include flex-center;
+    position: relative;
+
+    img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+      animation: float 6s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// =============================================
+// FEATURES SECTION
+// =============================================
+
+.features {
+  padding: $spacing-24 0;
+  background-color: $bg-secondary;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-16;
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-4;
+    color: $text-primary;
+
+    @include breakpoint(md) {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__grid {
+    @include grid-responsive(1, $spacing-8);
+  }
+}
+
+.feature-card {
+  @include card;
+  padding: $spacing-8;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $primary, $primary-light);
+  }
+
+  &__icon {
+    @include flex-center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-50), var(--primary-100));
+    border-radius: 50%;
+    margin: 0 auto $spacing-6;
+    color: $primary;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-4;
+    color: $text-primary;
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+  }
+}
+
+// =============================================
+// CTA SECTION
+// =============================================
+
+.cta {
+  padding: $spacing-24 0;
+  background: linear-gradient(135deg, $primary, $primary-dark);
+  color: white;
+
+  &__content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-4;
+
+    @include breakpoint(md) {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-8;
+    opacity: 0.9;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__form {
+    margin-bottom: $spacing-6;
+  }
+
+  &__disclaimer {
+    font-size: $font-size-sm;
+    opacity: 0.8;
+    line-height: $line-height-relaxed;
+  }
+}
+
+.input-group {
+  @include flex-center;
+  gap: $spacing-2;
+  max-width: 500px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+
+  @include breakpoint(md) {
+    flex-wrap: nowrap;
+  }
+
+  &__input {
+    flex: 1;
+    padding: $spacing-4;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: $border-radius;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: $font-size-base;
+    backdrop-filter: blur(10px);
+    transition: all $transition-normal;
+    min-width: 250px;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &__button {
+    background-color: white;
+    color: $primary;
+    border: 2px solid white;
+    padding: $spacing-4 $spacing-6;
+
+    &:hover:not(:disabled) {
+      background-color: transparent;
+      color: white;
+      transform: translateY(-1px);
+    }
+  }
+
+  &__error {
+    width: 100%;
+    color: var(--error);
+    font-size: $font-size-sm;
+    margin-top: $spacing-2;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+}
+
+// =============================================
+// FOOTER
+// =============================================
+
+.footer {
+  padding: $spacing-12 0;
+  background-color: $bg-dark;
+  color: var(--gray-300);
+
+  &__content {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-6;
+
+    @include breakpoint(md) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__brand {
+    @include flex-center;
+    gap: $spacing-3;
+    flex-direction: column;
+
+    @include breakpoint(md) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    opacity: 0.8;
+    text-align: center;
+
+    @include breakpoint(md) {
+      text-align: left;
+    }
+  }
+
+  &__links {
+    @include flex-center;
+    gap: $spacing-6;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    color: var(--gray-400);
+    transition: color $transition-normal;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+// =============================================
+// ANIMATIONS
+// =============================================
+
+.fade-in {
+  @include fade-in;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all $transition-slow;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================
+
+@media (max-width: $breakpoint-md) {
+  .hero {
+    padding-top: $spacing-24;
+    padding-bottom: $spacing-16;
+  }
+
+  .features,
+  .cta {
+    padding: $spacing-16 0;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hero__title {
+    font-size: $font-size-3xl;
+  }
+
+  .features__title,
+  .cta__title {
+    font-size: $font-size-3xl;
+  }
+
+  .btn {
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-size-sm;
+  }
+
+  .feature-card {
+    padding: $spacing-6;
+  }
+} 

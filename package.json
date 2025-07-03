@@ -1,0 +1,26 @@
+{
+  "name": "lp-ester",
+  "version": "1.0.0",
+  "description": "Modern landing page boilerplate with HTML5, SASS, and vanilla JavaScript",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "sass": "^1.69.0"
+  },
+  "keywords": [
+    "landing-page",
+    "html5",
+    "sass",
+    "javascript",
+    "vite",
+    "responsive"
+  ],
+  "author": "",
+  "license": "MIT"
+} 

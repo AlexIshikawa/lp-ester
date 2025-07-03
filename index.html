@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sua landing page moderna e responsiva">
+    <meta name="keywords" content="landing page, moderno, responsivo">
+    <meta name="author" content="Seu Nome">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seudominio.com/">
+    <meta property="og:title" content="Sua Landing Page">
+    <meta property="og:description" content="Sua landing page moderna e responsiva">
+    <meta property="og:image" content="https://seudominio.com/assets/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://seudominio.com/">
+    <meta property="twitter:title" content="Sua Landing Page">
+    <meta property="twitter:description" content="Sua landing page moderna e responsiva">
+    <meta property="twitter:image" content="https://seudominio.com/assets/og-image.jpg">
+    
+    <title>Sua Landing Page</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="theme-color" content="#FF6B4D">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/scss/main.scss">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Navegação principal">
+            <div class="container">
+                <div class="nav__brand">
+                    <a href="#" class="nav__logo" aria-label="Página inicial">
+                        <img src="/vite.svg" alt="Logo" width="32" height="32">
+                    </a>
+                </div>
+                <ul class="nav__menu" role="menubar">
+                    <li class="nav__item" role="none">
+                        <a href="#hero" class="nav__link" role="menuitem">Início</a>
+                    </li>
+                    <li class="nav__item" role="none">
+                        <a href="#features" class="nav__link" role="menuitem">Recursos</a>
+                    </li>
+                    <li class="nav__item" role="none">
+                        <a href="#cta" class="nav__link" role="menuitem">Contato</a>
+                    </li>
+                </ul>
+                <button class="nav__toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+                    <span class="nav__hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" role="main">
+        <!-- Hero Section -->
+        <section id="hero" class="hero" role="banner">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        Transforme sua 
+                        <span class="hero__highlight">Ideia</span> 
+                        em Realidade
+                    </h1>
+                    <p class="hero__subtitle">
+                        Crie soluções incríveis com nosso boilerplate moderno. 
+                        Desenvolvido com as melhores práticas e tecnologias atuais.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="#cta" class="btn btn--primary" role="button">
+                            Começar Agora
+                        </a>
+                        <a href="#features" class="btn btn--secondary" role="button">
+                            Saber Mais
+                        </a>
+                    </div>
+                </div>
+                <div class="hero__image">
+                    <img src="/vite.svg" alt="Ilustração representativa" width="400" height="400">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features" role="region" aria-labelledby="features-title">
+            <div class="container">
+                <header class="features__header">
+                    <h2 id="features-title" class="features__title">
+                        Por que Escolher Nossa Solução?
+                    </h2>
+                    <p class="features__subtitle">
+                        Descubra as vantagens que fazem a diferença no seu projeto
+                    </p>
+                </header>
+                <div class="features__grid">
+                    <article class="feature-card">
+                        <div class="feature-card__icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Performance</h3>
+                        <p class="feature-card__description">
+                            Código otimizado e build system moderno para máxima performance
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-card__icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Qualidade</h3>
+                        <p class="feature-card__description">
+                            Estrutura semântica, acessível e seguindo as melhores práticas
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-card__icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Escalabilidade</h3>
+                        <p class="feature-card__description">
+                            Arquitetura modular preparada para crescer com seu projeto
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="cta" class="cta" role="region" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta__content">
+                    <h2 id="cta-title" class="cta__title">
+                        Pronto para Começar?
+                    </h2>
+                    <p class="cta__subtitle">
+                        Não perca tempo! Comece seu projeto hoje mesmo com nossa base sólida.
+                    </p>
+                    <form class="cta__form" role="form" aria-label="Formulário de contato">
+                        <div class="input-group">
+                            <label for="email" class="sr-only">Seu melhor email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="input-group__input" 
+                                placeholder="Seu melhor email"
+                                required
+                                aria-describedby="email-error"
+                            >
+                            <button type="submit" class="btn btn--primary input-group__button">
+                                Começar Agora
+                            </button>
+                        </div>
+                        <div id="email-error" class="input-group__error" role="alert" aria-live="polite"></div>
+                    </form>
+                    <p class="cta__disclaimer">
+                        * Ao se inscrever, você concorda com nossos termos de uso e política de privacidade.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <img src="/vite.svg" alt="Logo" width="32" height="32">
+                    <p class="footer__text">
+                        Sua Landing Page © 2024. Todos os direitos reservados.
+                    </p>
+                </div>
+                <nav class="footer__nav" role="navigation" aria-label="Navegação do rodapé">
+                    <ul class="footer__links">
+                        <li><a href="#" class="footer__link">Privacidade</a></li>
+                        <li><a href="#" class="footer__link">Termos</a></li>
+                        <li><a href="#" class="footer__link">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html> 
