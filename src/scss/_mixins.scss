@@ -2,6 +2,8 @@
 // MIXINS
 // =============================================
 
+@use 'variables' as *;
+
 // Media Queries
 @mixin breakpoint($size) {
   @if $size == sm {

@@ -35,6 +35,69 @@ No arquivo `src/scss/_variables.scss`, você pode alterar as cores principais:
 }
 ```
 
+## 🔧 Header Personalizado
+
+### 1. Design do Header
+
+O header atual utiliza um design flutuante e arredondado com:
+- **Posicionamento**: Fixo no topo da página com margem
+- **Background**: Vidro fosco (backdrop-filter blur)
+- **Logo**: Texto "FERNANDO CICCERO" com fonte Roboto Extra Bold
+- **Navegação**: Links horizontais com botão CTA destacado
+- **Responsivo**: Menu hamburger em dispositivos móveis
+
+### 2. Personalizando a Logo
+
+Para alterar a logo textual no `index.html`:
+
+```html
+<h1 class="nav__logo">SEU NOME<br>AQUI</h1>
+```
+
+Para ajustar as propriedades da fonte no CSS:
+
+```scss
+.nav__logo {
+  font-family: $font-family-secondary; // Roboto
+  font-weight: 800; // Extra Bold
+  font-size: 36.31px;
+  line-height: 0.82; // 82%
+  letter-spacing: 0;
+  color: white;
+}
+```
+
+### 3. Modificando a Navegação
+
+Para alterar os itens do menu no `index.html`:
+
+```html
+<ul class="nav__menu" role="menubar">
+  <li class="nav__item">
+    <a href="#secao1" class="nav__link">ITEM 1</a>
+  </li>
+  <li class="nav__item">
+    <a href="#secao2" class="nav__link">ITEM 2</a>
+  </li>
+  <!-- Botão CTA -->
+  <li class="nav__item nav__item--cta">
+    <a href="#inscricao" class="nav__link nav__link--cta">CTA BUTTON</a>
+  </li>
+</ul>
+```
+
+### 4. Alterando Transparência do Header
+
+Para ajustar a transparência do header:
+
+```scss
+.nav {
+  background: rgba(255, 255, 255, 0.1); // Ajuste o último valor (0.1 = 10% de opacidade)
+  backdrop-filter: blur(20px); // Ajuste o blur
+  border: 1px solid rgba(255, 255, 255, 0.2); // Borda sutil
+}
+```
+
 ## 📝 Personalizando o Conteúdo
 
 ### 1. Alterando o Hero
@@ -51,20 +114,46 @@ No `index.html`, encontre a seção hero e personalize:
 </p>
 ```
 
-### 2. Adicionando/Removendo Features
+### 2. Adicionando/Removendo Seções
 
-Para adicionar uma nova feature card:
+O layout atual inclui estas seções:
+- **#inicio**: Seção principal (Hero)
+- **#aprender**: O que você vai aprender (Features)
+- **#curso**: Sobre o curso
+- **#ensinar**: Quem vai te ensinar
+- **#inscrever**: Call-to-action
+
+Para adicionar uma nova seção:
 
 ```html
-<article class="feature-card">
-  <div class="feature-card__icon">
-    <!-- Seu ícone SVG aqui -->
+<section id="nova-secao" class="nova-secao">
+  <div class="container">
+    <h2>Título da Nova Seção</h2>
+    <p>Conteúdo da seção</p>
   </div>
-  <h3 class="feature-card__title">Título da Feature</h3>
-  <p class="feature-card__description">
-    Descrição da sua feature
-  </p>
-</article>
+</section>
+```
+
+```scss
+// Em src/scss/main.scss
+.nova-secao {
+  padding: $spacing-24 0;
+  background-color: $bg-secondary;
+  
+  h2 {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-6;
+    text-align: center;
+  }
+}
+```
+
+### 3. Adicionando ao Menu de Navegação
+
+```html
+<li class="nav__item">
+  <a href="#nova-secao" class="nav__link">NOVA SEÇÃO</a>
+</li>
 ```
 
 ## 🖼️ Personalizando Imagens
@@ -129,41 +218,6 @@ isValidBrazilianPhone(phone) {
   const brazilianPhoneRegex = /^(\+55|55)?[\s\-]?(\(?\d{2}\)?)[\s\-]?(\d{4,5})[\s\-]?(\d{4})$/;
   return brazilianPhoneRegex.test(phone);
 }
-```
-
-## 🎯 Personalizando Seções
-
-### 1. Adicionando Nova Seção
-
-```html
-<section id="nova-secao" class="nova-secao">
-  <div class="container">
-    <h2>Título da Nova Seção</h2>
-    <p>Conteúdo da seção</p>
-  </div>
-</section>
-```
-
-```scss
-// Em src/scss/main.scss
-.nova-secao {
-  padding: $spacing-24 0;
-  background-color: $bg-secondary;
-  
-  h2 {
-    font-size: $font-size-4xl;
-    margin-bottom: $spacing-6;
-    text-align: center;
-  }
-}
-```
-
-### 2. Adicionando ao Menu de Navegação
-
-```html
-<li class="nav__item">
-  <a href="#nova-secao" class="nav__link">Nova Seção</a>
-</li>
 ```
 
 ## 📱 Personalizando Responsividade
@@ -328,9 +382,10 @@ const toggleTheme = () => {
 ## 🎯 Checklist de Personalização
 
 - [ ] Alterar cores da marca
-- [ ] Personalizar conteúdo do hero
-- [ ] Adicionar/remover features
-- [ ] Substituir imagens e logos
+- [ ] Personalizar logo no header
+- [ ] Ajustar itens de navegação
+- [ ] Personalizar conteúdo das seções
+- [ ] Substituir imagens e ícones
 - [ ] Configurar formulário de contato
 - [ ] Adicionar analytics
 - [ ] Testar responsividade
