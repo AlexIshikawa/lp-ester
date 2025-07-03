@@ -33,27 +33,25 @@
 <body>
     <!-- Header -->
     <header class="header" role="banner">
+        <div class="nav__brand">
+            <h1 class="nav__logo">FERNANDO<br>CICCERO</h1>
+        </div>
         <nav class="nav" role="navigation" aria-label="Navegação principal">
-            <div class="container">
-                <div class="nav__brand">
-                    <a href="#" class="nav__logo" aria-label="Página inicial">
-                        <img src="/vite.svg" alt="Logo" width="32" height="32">
-                    </a>
-                </div>
+            <div class="nav__container">
                 <ul class="nav__menu" role="menubar">
                     <li class="nav__item" role="none">
-                        <a href="#hero" class="nav__link" role="menuitem">Início</a>
+                        <a href="#inicio" class="nav__link" role="menuitem">INÍCIO</a>
                     </li>
                     <li class="nav__item" role="none">
-                        <a href="#features" class="nav__link" role="menuitem">Recursos</a>
+                        <a href="#aprender" class="nav__link" role="menuitem">O QUE VOCÊ VAI APRENDER</a>
                     </li>
                     <li class="nav__item" role="none">
-                        <a href="#cta" class="nav__link" role="menuitem">Contato</a>
+                        <a href="#curso" class="nav__link" role="menuitem">SOBRE O CURSO</a>
+                    </li>
+                    <li class="nav__item" role="none">
+                        <a href="#ensinar" class="nav__link" role="menuitem">QUEM VAI TE ENSINAR</a>
                     </li>
                 </ul>
-                <button class="nav__toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
-                    <span class="nav__hamburger"></span>
-                </button>
             </div>
         </nav>
     </header>
@@ -61,39 +59,23 @@
     <!-- Main Content -->
     <main class="main" role="main">
         <!-- Hero Section -->
-        <section id="hero" class="hero" role="banner">
+        <section id="inicio" class="hero" role="banner">
+            <div class="hero__background"></div>
             <div class="container">
                 <div class="hero__content">
                     <h1 class="hero__title">
-                        Transforme sua 
-                        <span class="hero__highlight">Ideia</span> 
-                        em Realidade
+                        Deus está presente, mesmo quando não é mencionado
                     </h1>
-                    <p class="hero__subtitle">
-                        Crie soluções incríveis com nosso boilerplate moderno. 
-                        Desenvolvido com as melhores práticas e tecnologias atuais.
-                    </p>
-                    <div class="hero__actions">
-                        <a href="#cta" class="btn btn--primary" role="button">
-                            Começar Agora
-                        </a>
-                        <a href="#features" class="btn btn--secondary" role="button">
-                            Saber Mais
-                        </a>
-                    </div>
-                </div>
-                <div class="hero__image">
-                    <img src="/vite.svg" alt="Ilustração representativa" width="400" height="400">
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="features" role="region" aria-labelledby="features-title">
+        <section id="aprender" class="features" role="region" aria-labelledby="features-title">
             <div class="container">
                 <header class="features__header">
                     <h2 id="features-title" class="features__title">
-                        Por que Escolher Nossa Solução?
+                        O Que Você Vai Aprender?
                     </h2>
                     <p class="features__subtitle">
                         Descubra as vantagens que fazem a diferença no seu projeto
@@ -139,8 +121,42 @@
             </div>
         </section>
 
+        <!-- About Course Section -->
+        <section id="curso" class="about-course" role="region" aria-labelledby="course-title">
+            <div class="container">
+                <header class="about-course__header">
+                    <h2 id="course-title" class="about-course__title">
+                        Sobre o Curso
+                    </h2>
+                    <p class="about-course__subtitle">
+                        Conheça mais detalhes sobre este curso completo
+                    </p>
+                </header>
+                <div class="about-course__content">
+                    <p>Conteúdo sobre o curso será adicionado aqui...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instructor Section -->
+        <section id="ensinar" class="instructor" role="region" aria-labelledby="instructor-title">
+            <div class="container">
+                <header class="instructor__header">
+                    <h2 id="instructor-title" class="instructor__title">
+                        Quem Vai Te Ensinar
+                    </h2>
+                    <p class="instructor__subtitle">
+                        Conheça seu instrutor especialista
+                    </p>
+                </header>
+                <div class="instructor__content">
+                    <p>Informações sobre o instrutor serão adicionadas aqui...</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Call to Action Section -->
-        <section id="cta" class="cta" role="region" aria-labelledby="cta-title">
+        <section id="inscrever" class="cta" role="region" aria-labelledby="cta-title">
             <div class="container">
                 <div class="cta__content">
                     <h2 id="cta-title" class="cta__title">
@@ -162,7 +178,7 @@
                                 aria-describedby="email-error"
                             >
                             <button type="submit" class="btn btn--primary input-group__button">
-                                Começar Agora
+                                Quero Me Inscrever
                             </button>
                         </div>
                         <div id="email-error" class="input-group__error" role="alert" aria-live="polite"></div>

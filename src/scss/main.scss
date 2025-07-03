@@ -18,6 +18,19 @@ body {
   color: $text-primary;
   background-color: $bg-primary;
   line-height: $line-height-normal;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: $z-fixed - 1;
+    pointer-events: none;
+  }
 }
 
 // Utility classes
@@ -42,74 +55,161 @@ body {
 
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: $z-fixed;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid $border-color;
+  width: calc(100% - 40px);
+  max-width: 1200px;
   transition: all $transition-normal;
+  
+  @include breakpoint(md) {
+    width: calc(100% - 80px);
+  }
 }
 
 .nav {
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 60px;
+  padding: 12px 24px;
+  
+  @include breakpoint(md) {
+    padding: 16px 32px;
+  }
+
+  &__container {
+    @include flex-between;
+    align-items: center;
+    gap: $spacing-4;
+  }
+
   &__brand {
-    @include flex-center;
-    gap: $spacing-2;
+    flex-shrink: 0;
   }
 
   &__logo {
-    @include flex-center;
-    transition: transform $transition-normal;
-
-    &:hover {
-      transform: scale(1.1);
+    font-family: $font-family-secondary; // Roboto
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 0.82;
+    letter-spacing: 0;
+    color: white;
+    margin: 0;
+    text-align: left;
+    
+    @include breakpoint(md) {
+      font-size: 28px;
     }
-  }
-
-  .container {
-    @include flex-between;
-    padding-top: $spacing-4;
-    padding-bottom: $spacing-4;
+    
+    @include breakpoint(lg) {
+      font-size: 36.31px;
+    }
   }
 
   &__menu {
     @include flex-center;
-    gap: $spacing-8;
+    gap: $spacing-6;
+    margin: 0;
+    padding: 0;
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $breakpoint-lg) {
       display: none;
+    }
+    
+    @include breakpoint(xl) {
+      gap: $spacing-8;
+    }
+  }
+
+  &__item {
+    &--cta {
+      margin-left: $spacing-4;
     }
   }
 
   &__link {
-    font-weight: $font-weight-medium;
-    color: $text-secondary;
-    transition: color $transition-normal;
+    font-family: $font-family-secondary;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all $transition-normal;
+    white-space: nowrap;
+    padding: 8px 12px;
+    border-radius: 25px;
 
     &:hover {
-      color: $primary;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      color: white;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &--cta {
+      background: $primary;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+
+      &:hover {
+        background: $primary-dark;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(255, 107, 77, 0.4);
+      }
+
+      &.active {
+        background: $primary-dark;
+      }
     }
   }
 
   &__toggle {
     display: none;
     @include flex-center;
-    width: 40px;
-    height: 40px;
-    border-radius: $border-radius;
-    background-color: transparent;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
+    transition: all $transition-normal;
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $breakpoint-lg) {
       display: flex;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    &[aria-expanded="true"] {
+      background: rgba(255, 255, 255, 0.2);
+      
+      .nav__hamburger {
+        background-color: transparent;
+        transform: rotate(45deg);
+        
+        &::before {
+          transform: rotate(90deg) translateX(6px);
+        }
+        
+        &::after {
+          transform: rotate(90deg) translateX(-6px);
+        }
+      }
     }
   }
 
   &__hamburger {
-    width: 24px;
+    width: 20px;
     height: 2px;
-    background-color: $text-primary;
+    background-color: white;
     position: relative;
     transition: all $transition-normal;
 
@@ -119,16 +219,57 @@ body {
       position: absolute;
       width: 100%;
       height: 2px;
-      background-color: $text-primary;
+      background-color: white;
       transition: all $transition-normal;
     }
 
     &::before {
-      top: -8px;
+      top: -6px;
     }
 
     &::after {
-      top: 8px;
+      top: 6px;
+    }
+  }
+
+  // Mobile menu styles
+  &__menu--mobile {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: $spacing-6;
+    flex-direction: column;
+    gap: $spacing-4;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: $z-modal;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all $transition-normal;
+
+    @include breakpoint(md) {
+      left: 40px;
+      right: 40px;
+    }
+
+    .nav__link {
+      width: 100%;
+      text-align: center;
+      padding: $spacing-4;
+      font-size: 16px;
+      border-radius: 12px;
+    }
+
+    .nav__link--cta {
+      margin-top: $spacing-4;
+      background: $primary;
+      
+      &:hover {
+        background: $primary-dark;
+      }
     }
   }
 }
@@ -138,97 +279,85 @@ body {
 // =============================================
 
 .hero {
-  padding-top: $spacing-32;
-  padding-bottom: $spacing-24;
-  background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
   overflow: hidden;
 
-  @include breakpoint(md) {
-    padding-top: $spacing-32;
-    padding-bottom: $spacing-32;
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    ), 
+    url('https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
   }
 
   .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $spacing-12;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
     align-items: center;
+    padding-top: 100px;
+    padding-bottom: 60px;
 
-    @include breakpoint(lg) {
-      grid-template-columns: 1fr 1fr;
-      gap: $spacing-16;
+    @include breakpoint(md) {
+      padding-top: 120px;
+      padding-bottom: 80px;
     }
   }
 
   &__content {
-    text-align: center;
+    max-width: 800px;
+    text-align: left;
+    padding: 0 $spacing-4;
 
-    @include breakpoint(lg) {
-      text-align: left;
+    @include breakpoint(md) {
+      padding: 0;
     }
   }
 
   &__title {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin-bottom: $spacing-6;
-    color: $text-primary;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    @include breakpoint(sm) {
+      font-size: 3rem;
+    }
 
     @include breakpoint(md) {
-      font-size: $font-size-5xl;
+      font-size: 4rem;
     }
 
     @include breakpoint(lg) {
-      font-size: $font-size-6xl;
+      font-size: 5rem;
+    }
+
+    @include breakpoint(xl) {
+      font-size: 6rem;
     }
   }
 
-  &__highlight {
-    @include gradient-text(linear-gradient(135deg, $primary, $primary-dark));
-  }
-
-  &__subtitle {
-    font-size: $font-size-lg;
-    color: $text-secondary;
-    margin-bottom: $spacing-8;
-    max-width: 600px;
-
-    @include breakpoint(lg) {
-      font-size: $font-size-xl;
-    }
-  }
-
-  &__actions {
-    @include flex-center;
-    gap: $spacing-4;
-    flex-wrap: wrap;
-
-    @include breakpoint(lg) {
-      justify-content: flex-start;
-    }
-  }
-
-  &__image {
-    @include flex-center;
-    position: relative;
-
-    img {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
-      animation: float 6s ease-in-out infinite;
-    }
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
+  @include breakpoint(md) {
+    padding-top: calc($spacing-32 + 60px);
   }
 }
 
@@ -311,6 +440,104 @@ body {
     font-size: $font-size-base;
     color: $text-secondary;
     line-height: $line-height-relaxed;
+  }
+}
+
+// =============================================
+// ABOUT COURSE SECTION
+// =============================================
+
+.about-course {
+  padding: $spacing-24 0;
+  background-color: $bg-secondary;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-16;
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-4;
+    color: $text-primary;
+
+    @include breakpoint(md) {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    
+    p {
+      font-size: $font-size-lg;
+      line-height: $line-height-relaxed;
+      color: $text-secondary;
+    }
+  }
+}
+
+// =============================================
+// INSTRUCTOR SECTION
+// =============================================
+
+.instructor {
+  padding: $spacing-24 0;
+  background-color: $bg-primary;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-16;
+  }
+
+  &__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin-bottom: $spacing-4;
+    color: $text-primary;
+
+    @include breakpoint(md) {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include breakpoint(md) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    
+    p {
+      font-size: $font-size-lg;
+      line-height: $line-height-relaxed;
+      color: $text-secondary;
+    }
   }
 }
 
@@ -501,13 +728,52 @@ body {
 // RESPONSIVE ADJUSTMENTS
 // =============================================
 
+@media (max-width: $breakpoint-lg) {
+  .header {
+    top: 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .nav {
+    padding: 10px 20px;
+    border-radius: 50px;
+    
+    &__logo {
+      font-size: 18px;
+    }
+  }
+}
+
 @media (max-width: $breakpoint-md) {
-  .hero {
-    padding-top: $spacing-24;
-    padding-bottom: $spacing-16;
+  .header {
+    top: 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .nav {
+    padding: 8px 16px;
+    border-radius: 40px;
+    
+    &__logo {
+      font-size: 16px;
+      line-height: 0.9;
+    }
+    
+    &__toggle {
+      width: 40px;
+      height: 40px;
+    }
+    
+    &__hamburger {
+      width: 18px;
+    }
   }
 
+
+
   .features,
+  .about-course,
+  .instructor,
   .cta {
     padding: $spacing-16 0;
   }
@@ -518,11 +784,34 @@ body {
 }
 
 @media (max-width: $breakpoint-sm) {
-  .hero__title {
-    font-size: $font-size-3xl;
+  .header {
+    top: 8px;
+    width: calc(100% - 16px);
+  }
+  
+  .nav {
+    padding: 6px 12px;
+    border-radius: 30px;
+    
+    &__logo {
+      font-size: 14px;
+    }
+    
+    &__toggle {
+      width: 36px;
+      height: 36px;
+    }
+    
+    &__hamburger {
+      width: 16px;
+    }
   }
 
+
+
   .features__title,
+  .about-course__title,
+  .instructor__title,
   .cta__title {
     font-size: $font-size-3xl;
   }

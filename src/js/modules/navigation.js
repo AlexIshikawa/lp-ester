@@ -5,6 +5,7 @@
 export class Navigation {
   constructor() {
     this.header = document.querySelector(".header");
+    this.nav = document.querySelector(".nav");
     this.navToggle = document.querySelector(".nav__toggle");
     this.navMenu = document.querySelector(".nav__menu");
     this.navLinks = document.querySelectorAll(".nav__link");
@@ -49,6 +50,13 @@ export class Navigation {
         this.closeMobileMenu();
       }
     });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (this.isMenuOpen && !this.nav.contains(e.target)) {
+        this.closeMobileMenu();
+      }
+    });
   }
 
   toggleMobileMenu() {
@@ -62,35 +70,33 @@ export class Navigation {
   }
 
   openMobileMenu() {
-    this.navMenu.style.display = "flex";
-    this.navMenu.style.position = "fixed";
-    this.navMenu.style.top = "80px";
-    this.navMenu.style.left = "0";
-    this.navMenu.style.right = "0";
-    this.navMenu.style.backgroundColor = "rgba(255, 255, 255, 0.98)";
-    this.navMenu.style.backdropFilter = "blur(20px)";
-    this.navMenu.style.flexDirection = "column";
-    this.navMenu.style.padding = "2rem";
-    this.navMenu.style.gap = "1.5rem";
-    this.navMenu.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1)";
-    this.navMenu.style.zIndex = "1000";
+    // Clone the menu for mobile
+    const mobileMenu = this.navMenu.cloneNode(true);
+    mobileMenu.classList.add("nav__menu--mobile");
+    mobileMenu.style.display = "flex";
+
+    // Remove existing mobile menu if any
+    const existingMobileMenu = document.querySelector(".nav__menu--mobile");
+    if (existingMobileMenu) {
+      existingMobileMenu.remove();
+    }
+
+    // Append to nav container
+    this.nav.appendChild(mobileMenu);
+
+    // Add event listeners to mobile menu links
+    const mobileLinks = mobileMenu.querySelectorAll(".nav__link");
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        this.handleNavClick(e);
+        this.closeMobileMenu();
+      });
+    });
 
     // Animate hamburger
     if (this.hamburger) {
       this.hamburger.style.backgroundColor = "transparent";
       this.hamburger.style.transform = "rotate(45deg)";
-
-      const before = this.hamburger.querySelector("::before");
-      const after = this.hamburger.querySelector("::after");
-
-      this.hamburger.style.setProperty(
-        "--before-transform",
-        "rotate(90deg) translateX(8px)"
-      );
-      this.hamburger.style.setProperty(
-        "--after-transform",
-        "rotate(90deg) translateX(-8px)"
-      );
     }
 
     // Update toggle button
@@ -99,28 +105,29 @@ export class Navigation {
 
     // Prevent body scroll
     document.body.style.overflow = "hidden";
+
+    // Animate menu in
+    setTimeout(() => {
+      mobileMenu.style.opacity = "1";
+      mobileMenu.style.transform = "translateY(0)";
+    }, 10);
   }
 
   closeMobileMenu() {
-    this.navMenu.style.display = "";
-    this.navMenu.style.position = "";
-    this.navMenu.style.top = "";
-    this.navMenu.style.left = "";
-    this.navMenu.style.right = "";
-    this.navMenu.style.backgroundColor = "";
-    this.navMenu.style.backdropFilter = "";
-    this.navMenu.style.flexDirection = "";
-    this.navMenu.style.padding = "";
-    this.navMenu.style.gap = "";
-    this.navMenu.style.boxShadow = "";
-    this.navMenu.style.zIndex = "";
+    const mobileMenu = document.querySelector(".nav__menu--mobile");
+    if (mobileMenu) {
+      mobileMenu.style.opacity = "0";
+      mobileMenu.style.transform = "translateY(-10px)";
+
+      setTimeout(() => {
+        mobileMenu.remove();
+      }, 200);
+    }
 
     // Reset hamburger
     if (this.hamburger) {
       this.hamburger.style.backgroundColor = "";
       this.hamburger.style.transform = "";
-      this.hamburger.style.setProperty("--before-transform", "");
-      this.hamburger.style.setProperty("--after-transform", "");
     }
 
     // Update toggle button
@@ -143,7 +150,7 @@ export class Navigation {
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
-        const headerHeight = this.header.offsetHeight;
+        const headerHeight = this.header.offsetHeight + 40; // Add extra space for floating header
         const targetPosition = targetElement.offsetTop - headerHeight - 20;
 
         window.scrollTo({
@@ -162,20 +169,13 @@ export class Navigation {
   handleScroll() {
     const currentScrollY = window.scrollY;
 
-    // Header background on scroll
-    if (currentScrollY > 50) {
-      this.header.style.backgroundColor = "rgba(255, 255, 255, 0.98)";
-      this.header.style.boxShadow = "0 1px 3px rgba(0, 0, 0, 0.1)";
+    // Header behavior on scroll - keep floating design
+    if (currentScrollY > 100) {
+      this.header.style.transform = "translateX(-50%) scale(0.95)";
+      this.nav.style.background = "rgba(255, 255, 255, 0.05)";
     } else {
-      this.header.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
-      this.header.style.boxShadow = "";
-    }
-
-    // Hide header on scroll down, show on scroll up
-    if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
-      this.header.style.transform = "translateY(-100%)";
-    } else {
-      this.header.style.transform = "translateY(0)";
+      this.header.style.transform = "translateX(-50%) scale(1)";
+      this.nav.style.background = "rgba(255, 255, 255, 0.1)";
     }
 
     this.lastScrollY = currentScrollY;
@@ -186,7 +186,7 @@ export class Navigation {
 
   setActiveLink() {
     const sections = document.querySelectorAll("section[id]");
-    const headerHeight = this.header.offsetHeight;
+    const headerHeight = this.header.offsetHeight + 60;
 
     sections.forEach((section) => {
       const sectionTop = section.offsetTop - headerHeight - 100;
@@ -211,7 +211,7 @@ export class Navigation {
   }
 
   handleResize() {
-    if (window.innerWidth > 768 && this.isMenuOpen) {
+    if (window.innerWidth > 1024 && this.isMenuOpen) {
       this.closeMobileMenu();
     }
   }
