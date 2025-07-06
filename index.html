@@ -27,200 +27,48 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg">
     <meta name="theme-color" content="#FF6B4D">
     
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <!-- Styles -->
     <link rel="stylesheet" href="src/scss/main.scss">
 </head>
 <body>
     <!-- Header -->
-    <header class="header" role="banner">
-        <div class="nav__brand">
-            <h1 class="nav__logo">FERNANDO<br>CICCERO</h1>
-        </div>
-        <nav class="nav" role="navigation" aria-label="Navegação principal">
-            <div class="nav__container">
-                <ul class="nav__menu" role="menubar">
-                    <li class="nav__item" role="none">
-                        <a href="#inicio" class="nav__link" role="menuitem">INÍCIO</a>
-                    </li>
-                    <li class="nav__item" role="none">
-                        <a href="#aprender" class="nav__link" role="menuitem">O QUE VOCÊ VAI APRENDER</a>
-                    </li>
-                    <li class="nav__item" role="none">
-                        <a href="#curso" class="nav__link" role="menuitem">SOBRE O CURSO</a>
-                    </li>
-                    <li class="nav__item" role="none">
-                        <a href="#ensinar" class="nav__link" role="menuitem">QUEM VAI TE ENSINAR</a>
-                    </li>
-                    <div class="nav__item">
-                        <a href="#inscrever" class="nav__link nav__link--button" role="menuitem">Quero me inscrever</a>
-                    </div>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                Fernando<br/>
+                Ciccero
+            </div>
+            <nav class="header-menu">
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">O que você vai aprender</a></li>
+                    <li><a href="#">Sobre o curso</a></li>
+                    <li><a href="#">Quem vai te ensinar</a></li>
+                    <li><button>Quero me inscrever</button></li>
                 </ul>
-                
-                <!-- Mobile CTA Button -->
-                <div class="nav__mobile-cta">
-                    <a href="#inscrever" class="nav__link nav__link--button" role="menuitem">Quero me inscrever</a>
-                </div>
+            </nav>
+            <div class="header-mobile-menu">
+                <button>Quero me inscrever</button>
             </div>
-        </nav>
+        </div>
     </header>
-
-    <!-- Main Content -->
-    <main class="main" role="main">
-        <!-- Hero Section -->
-        <section id="inicio" class="hero" role="banner">
-            <div class="hero__background"></div>
-            <div class="container">
-                <div class="hero__content">
-                    <h1 class="hero__title">
-                        Deus está presente, mesmo quando não é mencionado
-                    </h1>
-                </div>
+    <main>
+        <section class="hero">
+            <div class="hero-content container">
+                <h1 class="hero-title"><span>Deus</span> está <br/>presente, mesmo <br/>quando não é <br/>mencionado</h1>
+                <p class="hero-subtitle">Descubra a ação invisível de Deus no Curso</p>
+                <strong>Ester - a provisão de Deus na história</strong>
+                <button class="primary-button">Quero me inscrever</button>
             </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="aprender" class="features" role="region" aria-labelledby="features-title">
-            <div class="container">
-                <header class="features__header">
-                    <h2 id="features-title" class="features__title">
-                        O Que Você Vai Aprender?
-                    </h2>
-                    <p class="features__subtitle">
-                        Descubra as vantagens que fazem a diferença no seu projeto
-                    </p>
-                </header>
-                <div class="features__grid">
-                    <article class="feature-card">
-                        <div class="feature-card__icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-card__title">Performance</h3>
-                        <p class="feature-card__description">
-                            Código otimizado e build system moderno para máxima performance
-                        </p>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-card__icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-card__title">Qualidade</h3>
-                        <p class="feature-card__description">
-                            Estrutura semântica, acessível e seguindo as melhores práticas
-                        </p>
-                    </article>
-
-                    <article class="feature-card">
-                        <div class="feature-card__icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <h3 class="feature-card__title">Escalabilidade</h3>
-                        <p class="feature-card__description">
-                            Arquitetura modular preparada para crescer com seu projeto
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Course Section -->
-        <section id="curso" class="about-course" role="region" aria-labelledby="course-title">
-            <div class="container">
-                <header class="about-course__header">
-                    <h2 id="course-title" class="about-course__title">
-                        Sobre o Curso
-                    </h2>
-                    <p class="about-course__subtitle">
-                        Conheça mais detalhes sobre este curso completo
-                    </p>
-                </header>
-                <div class="about-course__content">
-                    <p>Conteúdo sobre o curso será adicionado aqui...</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Instructor Section -->
-        <section id="ensinar" class="instructor" role="region" aria-labelledby="instructor-title">
-            <div class="container">
-                <header class="instructor__header">
-                    <h2 id="instructor-title" class="instructor__title">
-                        Quem Vai Te Ensinar
-                    </h2>
-                    <p class="instructor__subtitle">
-                        Conheça seu instrutor especialista
-                    </p>
-                </header>
-                <div class="instructor__content">
-                    <p>Informações sobre o instrutor serão adicionadas aqui...</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action Section -->
-        <section id="inscrever" class="cta" role="region" aria-labelledby="cta-title">
-            <div class="container">
-                <div class="cta__content">
-                    <h2 id="cta-title" class="cta__title">
-                        Pronto para Começar?
-                    </h2>
-                    <p class="cta__subtitle">
-                        Não perca tempo! Comece seu projeto hoje mesmo com nossa base sólida.
-                    </p>
-                    <form class="cta__form" role="form" aria-label="Formulário de contato">
-                        <div class="input-group">
-                            <label for="email" class="sr-only">Seu melhor email</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                class="input-group__input" 
-                                placeholder="Seu melhor email"
-                                required
-                                aria-describedby="email-error"
-                            >
-                            <button type="submit" class="btn btn--primary input-group__button">
-                                Quero Me Inscrever
-                            </button>
-                        </div>
-                        <div id="email-error" class="input-group__error" role="alert" aria-live="polite"></div>
-                    </form>
-                    <p class="cta__disclaimer">
-                        * Ao se inscrever, você concorda com nossos termos de uso e política de privacidade.
-                    </p>
-                </div>
-            </div>
+            <img src="src/assets/ester.png" alt="Hero Image" class="ester-img">
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__brand">
-                    <img src="/vite.svg" alt="Logo" width="32" height="32">
-                    <p class="footer__text">
-                        Sua Landing Page © 2024. Todos os direitos reservados.
-                    </p>
-                </div>
-                <nav class="footer__nav" role="navigation" aria-label="Navegação do rodapé">
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Privacidade</a></li>
-                        <li><a href="#" class="footer__link">Termos</a></li>
-                        <li><a href="#" class="footer__link">Contato</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </footer>
-
     <!-- Scripts -->
-    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="src/js/main.js"></script>
 </body>
 </html> 
