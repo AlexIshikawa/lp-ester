@@ -1,793 +1,254 @@
-// =============================================
-// MAIN STYLES
-// =============================================
-
-// Use partials with modern Sass syntax
+@use 'reset';
 @use 'variables' as *;
 @use 'mixins' as *;
-@use 'reset';
 
-// Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Proxima+Nova:wght@300;400;500;600;700&display=swap');
-
-// Base styles
 body {
-  font-family: $font-family-primary;
-  font-size: $font-size-base;
-  color: $text-primary;
-  background-color: $bg-primary;
-  line-height: $line-height-normal;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
-    z-index: $z-fixed - 1;
-    pointer-events: none;
-  }
-}
+  font-family: $font-primary;
+  background: $white;
+  color: $secondary;
+  margin: 0;
+  padding: 0;
+} 
 
-// Utility classes
 .container {
-  @include container;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  
+  @include breakpoint(sm) {
+    padding: 0 20px;
+  }
+  
+  @include breakpoint(lg) {
+    padding: 0 30px;
+  }
 }
 
-// Button components
-.btn {
-  &--primary {
-    @include button-primary;
+.logo {
+  font-family: $font-secondary;
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 82%;
+  text-transform: uppercase;
+  color: $white;
+  
+  @include breakpoint(sm) {
+    font-size: 1rem;
   }
-
-  &--secondary {
-    @include button-secondary;
+  
+  @include breakpoint(md) {
+    font-size: 2rem;
   }
 }
 
-// =============================================
-// HEADER
-// =============================================
+.primary-button {
+  background-color: $primary;
+  border: 1px solid #B8462F;
+  color: $white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.9rem;
+  width: fit-content;
+  cursor: pointer;
+  
+  @include breakpoint(md) {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+}
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: $z-fixed;
-  width: calc(100% - 40px);
-  max-width: 1200px;
-  transition: all $transition-normal;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: $spacing-24;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem 0;
   
   @include breakpoint(md) {
-    width: calc(100% - 80px);
-  }
-}
-
-.nav {
-  background: #34302D;
-  border-radius: 60px;
-  padding: 24px 32px;
-  
-  @include breakpoint(md) {
-    padding: 24px 32px;
-  }
-
-  &__container {
-    @include flex-between;
-    align-items: center;
-    gap: $spacing-4;
-  }
-
-  &__brand {
-    flex-shrink: 0;
-  }
-
-  &__logo {
-    font-family: $font-family-secondary; // Roboto
-    font-weight: 800;
-    font-size: 20px;
-    line-height: 0.82;
-    letter-spacing: 0;
-    color: white;
-    margin: 0;
-    text-align: left;
-    
-    @include breakpoint(md) {
-      font-size: 28px;
-    }
-    
-    @include breakpoint(lg) {
-      font-size: 36.31px;
-    }
-  }
-
-  &__menu {
-    @include flex-center;
-    gap: $spacing-6;
-    margin: 0;
-    padding: 0;
-
-    @media (max-width: $breakpoint-lg) {
-      display: none;
-    }
-    
-    @include breakpoint(xl) {
-      gap: $spacing-8;
-    }
-  }
-
-  &__item {
-    // Hide all navigation items on mobile except CTA
-    @media (max-width: $breakpoint-lg) {
-      display: none;
-    }
-
-    &--cta {
-      margin-left: $spacing-4;
-      
-      // Show CTA button on mobile
-      @media (max-width: $breakpoint-lg) {
-        display: block;
-        margin-left: 0;
-      }
-    }
-  }
-
-  &__link {
-    font-family: $font-family-secondary;
-    font-weight: 500;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    transition: all $transition-normal;
-    white-space: nowrap;
-    padding: 8px 12px;
-    border-radius: 25px;
-
-    &:hover {
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    &.active {
-      color: white;
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    &--button {
-        font-family: $font-family-secondary;
-        border: 1px solid #6C625A;
-        text-transform: uppercase;
-        border-radius: 25px;
-        font-weight: 500;
-        padding: 8px 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        // Show button on mobile
-        @media (max-width: $breakpoint-lg) {
-          display: flex;
-          font-size: 12px;
-          padding: 6px 16px;
-        }
-
-        &:hover {
-          background: $primary;
-          color: white;
-          transition: all $transition-normal;
-        }
-    }
-
-    &--cta {
-      background: $primary;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 700;
-
-      &:hover {
-        background: $primary-dark;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 107, 77, 0.4);
-      }
-
-      &.active {
-        background: $primary-dark;
-      }
-    }
-  }
-
-  &__mobile-cta {
-    display: none;
-    
-    @media (max-width: $breakpoint-lg) {
-      display: block;
-    }
-  }
-
-  &__toggle {
-    display: none;
-  }
-
-  &__hamburger {
-    display: none;
-  }
-
-  // Mobile menu styles - Not needed anymore but keeping for future reference
-  &__menu--mobile {
-    display: none;
-  }
-}
-
-// =============================================
-// HERO SECTION
-// =============================================
-
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0;
-  overflow: hidden;
-
-  &__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.7) 100%
-    ), 
-    url('https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1;
+    padding: 1.5rem 0;
   }
 
   .container {
-    position: relative;
-    z-index: 2;
-    height: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding-top: 100px;
-    padding-bottom: 60px;
+    width: 100%;
+  }
 
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.1) 80%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+    
     @include breakpoint(md) {
-      padding-top: 120px;
-      padding-bottom: 80px;
+      height: 200px;
     }
   }
 
-  &__content {
-    max-width: 800px;
-    text-align: left;
-    padding: 0 $spacing-4;
+  button {
+    border: 1px solid #6C625A;
+    border-radius: 50px;
+    padding: .4rem .6rem;
+    color: $white;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: .65rem;
+    cursor: pointer;
+    background-color: $black;
+
+    &:hover {
+      background-color: $primary;
+      transition: all .2s ease;
+      border: 1px solid $primary;
+    }
 
     @include breakpoint(md) {
-      padding: 0;
+      background-color: transparent;
+      padding: .5rem .75rem;
+      font-size: .7rem;
     }
   }
 
-  &__title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: white;
-    margin-bottom: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-
-    @include breakpoint(sm) {
-      font-size: 3rem;
-    }
-
+  &-mobile-menu {
+    display: block;
+    
     @include breakpoint(md) {
-      font-size: 4rem;
+      display: none;
     }
+  }
 
+  &-menu {
+    background-color: #34302D;
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    color: $white;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: none;
+    
+    @include breakpoint(md) {
+      display: block;
+      padding: 1rem 1.5rem;
+    }
+    
     @include breakpoint(lg) {
-      font-size: 5rem;
+      padding: 1.2rem 2rem;
     }
+    
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
 
-    @include breakpoint(xl) {
-      font-size: 6rem;
+      li {
+        margin: 0 0.4rem;
+        font-size: .65rem;
+        
+        @include breakpoint(lg) {
+          margin: 0 0.8rem;
+          font-size: .7rem;
+        }
+      }
     }
-  }
-
-  @include breakpoint(md) {
-    padding-top: calc($spacing-32 + 60px);
   }
 }
 
-// =============================================
-// FEATURES SECTION
-// =============================================
-
-.features {
-  padding: $spacing-24 0;
-  background-color: $bg-secondary;
-
-  &__header {
-    text-align: center;
-    margin-bottom: $spacing-16;
-  }
-
-  &__title {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin-bottom: $spacing-4;
-    color: $text-primary;
-
-    @include breakpoint(md) {
-      font-size: $font-size-5xl;
-    }
-  }
-
-  &__subtitle {
-    font-size: $font-size-lg;
-    color: $text-secondary;
-    max-width: 600px;
-    margin: 0 auto;
-
-    @include breakpoint(md) {
-      font-size: $font-size-xl;
-    }
-  }
-
-  &__grid {
-    @include grid-responsive(1, $spacing-8);
-  }
-}
-
-.feature-card {
-  @include card;
-  padding: $spacing-8;
-  text-align: center;
+.hero {
+  background: url('../assets/background-img.png') no-repeat center center;
+  background-size: cover;
+  height: 100vh;
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: '';
+  .ester-img {
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: -20%;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, $primary, $primary-light);
+    width: 500px;
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
   }
 
-  &__icon {
-    @include flex-center;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--primary-50), var(--primary-100));
-    border-radius: 50%;
-    margin: 0 auto $spacing-6;
-    color: $primary;
-  }
-
-  &__title {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-4;
-    color: $text-primary;
-  }
-
-  &__description {
-    font-size: $font-size-base;
-    color: $text-secondary;
-    line-height: $line-height-relaxed;
-  }
-}
-
-// =============================================
-// ABOUT COURSE SECTION
-// =============================================
-
-.about-course {
-  padding: $spacing-24 0;
-  background-color: $bg-secondary;
-
-  &__header {
-    text-align: center;
-    margin-bottom: $spacing-16;
-  }
-
-  &__title {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin-bottom: $spacing-4;
-    color: $text-primary;
-
-    @include breakpoint(md) {
-      font-size: $font-size-5xl;
-    }
-  }
-
-  &__subtitle {
-    font-size: $font-size-lg;
-    color: $text-secondary;
-    max-width: 600px;
-    margin: 0 auto;
-
-    @include breakpoint(md) {
-      font-size: $font-size-xl;
-    }
-  }
-
-  &__content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    
-    p {
-      font-size: $font-size-lg;
-      line-height: $line-height-relaxed;
-      color: $text-secondary;
-    }
-  }
-}
-
-// =============================================
-// INSTRUCTOR SECTION
-// =============================================
-
-.instructor {
-  padding: $spacing-24 0;
-  background-color: $bg-primary;
-
-  &__header {
-    text-align: center;
-    margin-bottom: $spacing-16;
-  }
-
-  &__title {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin-bottom: $spacing-4;
-    color: $text-primary;
-
-    @include breakpoint(md) {
-      font-size: $font-size-5xl;
-    }
-  }
-
-  &__subtitle {
-    font-size: $font-size-lg;
-    color: $text-secondary;
-    max-width: 600px;
-    margin: 0 auto;
-
-    @include breakpoint(md) {
-      font-size: $font-size-xl;
-    }
-  }
-
-  &__content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    
-    p {
-      font-size: $font-size-lg;
-      line-height: $line-height-relaxed;
-      color: $text-secondary;
-    }
-  }
-}
-
-// =============================================
-// CTA SECTION
-// =============================================
-
-.cta {
-  padding: $spacing-24 0;
-  background: linear-gradient(135deg, $primary, $primary-dark);
-  color: white;
-
-  &__content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  &__title {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin-bottom: $spacing-4;
-
-    @include breakpoint(md) {
-      font-size: $font-size-5xl;
-    }
-  }
-
-  &__subtitle {
-    font-size: $font-size-lg;
-    margin-bottom: $spacing-8;
-    opacity: 0.9;
-
-    @include breakpoint(md) {
-      font-size: $font-size-xl;
-    }
-  }
-
-  &__form {
-    margin-bottom: $spacing-6;
-  }
-
-  &__disclaimer {
-    font-size: $font-size-sm;
-    opacity: 0.8;
-    line-height: $line-height-relaxed;
-  }
-}
-
-.input-group {
-  @include flex-center;
-  gap: $spacing-2;
-  max-width: 500px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-
-  @include breakpoint(md) {
-    flex-wrap: nowrap;
-  }
-
-  &__input {
-    flex: 1;
-    padding: $spacing-4;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: $border-radius;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: $font-size-base;
-    backdrop-filter: blur(10px);
-    transition: all $transition-normal;
-    min-width: 250px;
-
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    &:focus {
-      outline: none;
-      border-color: rgba(255, 255, 255, 0.5);
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-  }
-
-  &__button {
-    background-color: white;
-    color: $primary;
-    border: 2px solid white;
-    padding: $spacing-4 $spacing-6;
-
-    &:hover:not(:disabled) {
-      background-color: transparent;
-      color: white;
-      transform: translateY(-1px);
-    }
-  }
-
-  &__error {
-    width: 100%;
-    color: var(--error);
-    font-size: $font-size-sm;
-    margin-top: $spacing-2;
-    display: none;
-
-    &.show {
-      display: block;
-    }
-  }
-}
-
-// =============================================
-// FOOTER
-// =============================================
-
-.footer {
-  padding: $spacing-12 0;
-  background-color: $bg-dark;
-  color: var(--gray-300);
-
-  &__content {
-    @include flex-between;
-    flex-wrap: wrap;
-    gap: $spacing-6;
-
-    @include breakpoint(md) {
-      flex-wrap: nowrap;
-    }
-  }
-
-  &__brand {
-    @include flex-center;
-    gap: $spacing-3;
+  &-content {
+    display: flex;
     flex-direction: column;
+    height: 100%;
+    padding-top: 10rem;
 
     @include breakpoint(md) {
-      flex-direction: row;
-      align-items: center;
+      justify-content: center;
     }
-  }
 
-  &__text {
-    font-size: $font-size-sm;
-    opacity: 0.8;
-    text-align: center;
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 100%;
+      color: $white;
+      margin-bottom: 2rem;
+      
+      @include breakpoint(md) {
+        font-size: 3.5rem;
+        margin-bottom: 3rem;
+      }
+      
+      @include breakpoint(lg) {
+        font-size: 4rem;
+        margin-bottom: 4rem;
+      }
 
-    @include breakpoint(md) {
-      text-align: left;
+      span {
+        font-weight: 800;
+      }
     }
-  }
 
-  &__links {
-    @include flex-center;
-    gap: $spacing-6;
-    flex-wrap: wrap;
-  }
-
-  &__link {
-    font-size: $font-size-sm;
-    color: var(--gray-400);
-    transition: color $transition-normal;
-
-    &:hover {
-      color: white;
+    .hero-subtitle {
+      font-weight: 500;
+      font-size: 1rem;
+      color: $white;
+      line-height: 100%;
+      margin-bottom: .5rem;
+      
+      @include breakpoint(md) {
+        font-size: 1.2rem;
+      }
+      
+      @include breakpoint(lg) {
+        font-size: 1.5rem;
+      }
     }
-  }
-}
 
-// =============================================
-// ANIMATIONS
-// =============================================
-
-.fade-in {
-  @include fade-in;
-}
-
-.slide-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all $transition-slow;
-
-  &.animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// =============================================
-// RESPONSIVE ADJUSTMENTS
-// =============================================
-
-@media (max-width: $breakpoint-lg) {
-  .header {
-    top: 10px;
-    width: calc(100% - 20px);
-  }
-  
-  .nav {
-    padding: 16px 20px;
-    border-radius: 50px;
-    
-    &__container {
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    &__logo {
-      font-size: 18px;
-    }
-    
-    &__menu {
-      display: none;
-    }
-    
-    &__mobile-cta {
-      display: block;
-    }
-    
-    &__link--button {
-      font-size: 12px;
-      padding: 8px 16px;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 25px;
-      color: rgba(255, 255, 255, 0.9);
+    strong {
+      font-weight: 800;
+      font-size: 1.2rem;
+      line-height: 100%;
+      color: $black;
+      margin-bottom: 2rem;
+      
+      @include breakpoint(md) {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+      
+      @include breakpoint(lg) {
+        font-size: 1.75rem;
+      }
     }
   }
 }
-
-@media (max-width: $breakpoint-md) {
-  .header {
-    top: 10px;
-    width: calc(100% - 20px);
-  }
-  
-  .nav {
-    padding: 12px 16px;
-    border-radius: 40px;
-    
-    &__logo {
-      font-size: 16px;
-      line-height: 0.9;
-    }
-    
-    &__link--button {
-      font-size: 11px;
-      padding: 6px 12px;
-    }
-  }
-
-  .features,
-  .about-course,
-  .instructor,
-  .cta {
-    padding: $spacing-16 0;
-  }
-
-  .features__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: $breakpoint-sm) {
-  .header {
-    top: 8px;
-    width: calc(100% - 16px);
-  }
-  
-  .nav {
-    padding: 4px;
-    border-radius: 30px;
-    
-    &__logo {
-      font-size: 14px;
-    }
-    
-    &__link--button {
-      font-size: 10px;
-      padding: 6px 10px;
-    }
-  }
-
-  .features__title,
-  .about-course__title,
-  .instructor__title,
-  .cta__title {
-    font-size: $font-size-3xl;
-  }
-
-  .btn {
-    padding: $spacing-3 $spacing-4;
-    font-size: $font-size-sm;
-  }
-
-  .feature-card {
-    padding: $spacing-6;
-  }
-} 

@@ -1,121 +1,23 @@
-// =============================================
-// VARIABLES
-// =============================================
+// Cores
+$primary: #FF6B4D;
+$secondary: #222;
+$white: #fff;
+$black: #000;
 
-// Colors
-:root {
-  --primary-50: #fef2f2;
-  --primary-100: #fee2e2;
-  --primary-200: #fecaca;
-  --primary-300: #fca5a5;
-  --primary-400: #f87171;
-  --primary-500: #FF6B4D;
-  --primary-600: #dc2626;
-  --primary-700: #b91c1c;
-  --primary-800: #991b1b;
-  --primary-900: #7f1d1d;
+// Fontes
+$font-primary: 'Proxima Nova', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
 
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-800: #1e293b;
-  --gray-900: #0f172a;
+// Espaçamentos
+$spacing-sm: 0.5rem;
+$spacing: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
 
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
-  --info: #3b82f6;
-}
-
-// SCSS Variables
-$primary: var(--primary-500);
-$primary-light: var(--primary-400);
-$primary-dark: var(--primary-600);
-
-$text-primary: var(--gray-900);
-$text-secondary: var(--gray-600);
-$text-muted: var(--gray-500);
-
-$bg-primary: var(--gray-50);
-$bg-secondary: #ffffff;
-$bg-dark: var(--gray-900);
-
-$border-color: var(--gray-200);
-$border-radius: 0.5rem;
-$border-radius-lg: 0.75rem;
-$border-radius-xl: 1rem;
-
-// Typography
-$font-family-primary: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-$font-family-secondary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-
-$font-size-xs: 0.75rem;
-$font-size-sm: 0.875rem;
-$font-size-base: 1rem;
-$font-size-lg: 1.125rem;
-$font-size-xl: 1.25rem;
-$font-size-2xl: 1.5rem;
-$font-size-3xl: 1.875rem;
-$font-size-4xl: 2.25rem;
-$font-size-5xl: 3rem;
-$font-size-6xl: 3.75rem;
-
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
-
-$line-height-tight: 1.25;
-$line-height-normal: 1.5;
-$line-height-relaxed: 1.625;
-
-// Spacing
-$spacing-1: 0.25rem;
-$spacing-2: 0.5rem;
-$spacing-3: 0.75rem;
-$spacing-4: 1rem;
-$spacing-5: 1.25rem;
-$spacing-6: 1.5rem;
-$spacing-8: 2rem;
-$spacing-10: 2.5rem;
-$spacing-12: 3rem;
-$spacing-16: 4rem;
-$spacing-20: 5rem;
-$spacing-24: 6rem;
-$spacing-32: 8rem;
-
-// Breakpoints
-$breakpoint-sm: 640px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 1024px;
-$breakpoint-xl: 1280px;
-$breakpoint-2xl: 1536px;
-
-// Container
-$container-max-width: 1200px;
-$container-padding: $spacing-4;
-
-// Shadows
-$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-// Transitions
-$transition-fast: 0.15s ease-in-out;
-$transition-normal: 0.3s ease-in-out;
-$transition-slow: 0.5s ease-in-out;
-
-// Z-index
-$z-dropdown: 1000;
-$z-sticky: 1020;
-$z-fixed: 1030;
-$z-modal-backdrop: 1040;
-$z-modal: 1050;
-$z-popover: 1060;
-$z-tooltip: 1070; 
+// Breakpoints (Mobile First)
+$breakpoint-xs: 480px;   // Extra Small devices (phones)
+$breakpoint-sm: 576px;   // Small devices (landscape phones)
+$breakpoint-md: 768px;   // Medium devices (tablets)
+$breakpoint-lg: 992px;   // Large devices (desktops)
+$breakpoint-xl: 1200px;  // Extra large devices (large desktops)
+$breakpoint-xxl: 1400px; // Extra extra large devices 
