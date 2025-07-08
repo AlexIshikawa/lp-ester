@@ -264,20 +264,30 @@ body {
   }
 
   &-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     background-color: $black;
-    padding: 40px 20px;
     width: 100%;
     min-height: 60vh;
-    gap: 2rem;
+    display: flex;
+    align-items: center;
     
     @include breakpoint(md) {
-      padding: 60px 40px;
       min-height: auto;
+      padding: 60px 0;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      gap: 0;
+      gap: 2rem;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      
+      @include breakpoint(md) {
+        gap: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
     }
   }
 
@@ -530,6 +540,249 @@ body {
           font-size: 1.2rem;
         }
       }
+    }
+  }
+}
+
+.about {
+  background: url('../assets/sobre-bg.png') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 1.5rem 0;
+  
+  @include breakpoint(md) {
+    padding: 2rem 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  &-content {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      
+      @include breakpoint(md) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+    }
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    @include breakpoint(md) {
+      gap: 2rem;
+    }
+  }
+
+  &-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: $white;
+    line-height: 110%;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    
+    @include breakpoint(md) {
+      font-size: 4rem;
+      text-align: left;
+    }
+  }
+
+  &-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    
+    @include breakpoint(md) {
+      gap: 1.5rem;
+    }
+  }
+
+  &-feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    
+    @include breakpoint(md) {
+      flex-direction: row;
+      text-align: left;
+      gap: 1rem;
+    }
+    
+    img {
+      width: 60px;
+      height: 60px;
+      background-color: $primary;
+      border-radius: 50%;
+      padding: 12px;
+      
+      @include breakpoint(md) {
+        width: 80px;
+        height: 80px;
+        padding: 16px;
+        flex-shrink: 0;
+      }
+    }
+    
+    div {
+      color: $white;
+      font-size: 0.9rem;
+      line-height: 130%;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      
+      @include breakpoint(md) {
+        font-size: 1.2rem;
+        line-height: 140%;
+        flex: 1;
+      }
+      
+      strong {
+        color: $white;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.25rem;
+        
+        @include breakpoint(md) {
+          display: inline;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &-description {
+    color: $white;
+    font-size: 0.9rem;
+    line-height: 140%;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    
+    @include breakpoint(md) {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-align: left;
+    }
+  }
+
+  &-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  &-lessons {
+    background-color: $black;
+    border: 2px solid $primary;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    
+    @include breakpoint(md) {
+      max-width: 400px;
+    }
+  }
+
+  &-lesson-header {
+    background-color: $black;
+    color: $white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    
+    .play-icon {
+      color: $primary;
+      font-size: 1.2rem;
+    }
+  }
+
+  &-lesson-content {
+    padding: 1.5rem;
+    color: $white;
+    background-color: $black;
+  }
+
+  &-lesson-item {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid $primary;
+    
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: $white;
+    }
+    
+    p {
+      font-size: 0.85rem;
+      color: #CCCCCC;
+      line-height: 140%;
+      margin-bottom: 0.75rem;
+    }
+    
+    .lesson-details {
+      p {
+        font-size: 0.8rem;
+        color: $white;
+        margin-bottom: 0.25rem;
+      }
+      
+      span {
+        font-size: 0.75rem;
+        color: #ABABAB;
+      }
+    }
+  }
+
+  &-lesson-status {
+    text-align: center;
+    padding: 1rem;
+    background-color: $black;
+    border-top: 1px solid #333;
+    
+    strong {
+      color: $primary;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
     }
   }
 }
