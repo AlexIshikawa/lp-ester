@@ -91,9 +91,22 @@ body {
     height: 150px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.1) 80%, rgba(0, 0, 0, 0) 100%);
     pointer-events: none;
+    transition: all 0.3s ease;
     
     @include breakpoint(md) {
       height: 200px;
+    }
+  }
+  
+  // Header com sombra reduzida quando em scroll
+  &.header-scrolled {
+    &::after {
+      height: 30px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
+      
+      @include breakpoint(md) {
+        height: 40px;
+      }
     }
   }
 
@@ -783,6 +796,233 @@ body {
       font-weight: 700;
       font-size: 0.85rem;
       text-transform: uppercase;
+    }
+  }
+}
+
+// Testimonials Section
+.testimonials {
+  background: url('../assets/testimonials.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  padding: 4rem 0;
+  
+  @include breakpoint(md) {
+    padding: 6rem 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+
+  &-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  &-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: $white;
+    line-height: 110%;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    @include breakpoint(md) {
+      font-size: 3.5rem;
+      margin-bottom: 4rem;
+    }
+  }
+
+  &-swiper {
+    position: relative;
+    overflow: hidden;
+    padding: 0 1rem 3rem 1rem;
+    
+    @include breakpoint(md) {
+      padding: 0 2rem 4rem 2rem;
+    }
+  }
+
+  // Testimonial Card Styles
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    min-height: 350px;
+    
+    @include breakpoint(md) {
+      max-width: 600px;
+      padding: 2.5rem;
+    }
+  }
+
+  .testimonial-header {
+    margin-bottom: 1.5rem;
+    
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $secondary;
+      margin: 0;
+      
+      @include breakpoint(md) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    line-height: 150%;
+    color: #333;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    font-style: italic;
+    
+    @include breakpoint(md) {
+      font-size: 1rem;
+    }
+  }
+
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    
+    .author-avatar {
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        
+        @include breakpoint(md) {
+          width: 90px;
+          height: 90px;
+        }
+      }
+    }
+    
+    .author-info {
+      text-align: center;
+      
+      strong {
+        display: block;
+        font-weight: 700;
+        color: $secondary;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+        
+        @include breakpoint(md) {
+          font-size: 1.1rem;
+        }
+      }
+      
+      span {
+        color: #666;
+        font-size: 0.85rem;
+        
+        @include breakpoint(md) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  // Swiper Navigation Customization
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: $white;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    
+    &:after {
+      font-size: 20px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+    
+    @include breakpoint(md) {
+      width: 60px;
+      height: 60px;
+      margin-top: -30px;
+      
+      &:after {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .swiper-button-next {
+    right: 10px;
+    
+    @include breakpoint(md) {
+      right: 20px;
+    }
+  }
+
+  .swiper-button-prev {
+    left: 10px;
+    
+    @include breakpoint(md) {
+      left: 20px;
+    }
+  }
+
+  // Swiper Pagination
+  .swiper-pagination {
+    bottom: 0;
+    
+    .swiper-pagination-bullet {
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 1;
+      width: 12px;
+      height: 12px;
+      margin: 0 4px;
+      transition: all 0.3s ease;
+      
+      &-active {
+        background: $white;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @include breakpoint(sm) {
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+  }
+
+  @include breakpoint(md) {
+    .testimonial-card {
+      padding: 2.5rem;
     }
   }
 }
