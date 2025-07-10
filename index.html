@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sua landing page moderna e responsiva">
     <meta name="keywords" content="landing page, moderno, responsivo">
-    <meta name="author" content="Seu Nome">
+    <meta name="author" content="Alexandre Ishikawa">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -31,6 +31,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <!-- Styles -->
     <link rel="stylesheet" href="src/scss/main.scss">
@@ -169,7 +172,109 @@
                 </div>
             </div>
         </section>
+        
+        <section class="testimonials">
+            <div class="testimonials-content">
+                <div class="container">
+                    <h2 class="testimonials-title">O que as pessoas falam do curso</h2>
+                    
+                    <div class="swiper testimonials-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-header">
+                                        <h3>De explodir a mente!</h3>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "Eu nunca tinha entendido Ester assim. Esse curso transformou minha forma de enxergar a Bíblia."
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <img src="src/assets/avatar/user1.jpg" alt="Miriam Maranhão">
+                                        </div>
+                                        <div class="author-info">
+                                            <strong>Miriam Maranhão</strong>
+                                            <span>Presbiteriana da Lapa</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-header">
+                                        <h3>Transformador!</h3>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "Finalmente entendi como Deus age nos bastidores. Muito esclarecedor e aplicável à vida cristã."
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <img src="src/assets/avatar/user2.jpg" alt="Carlos Silva">
+                                        </div>
+                                        <div class="author-info">
+                                            <strong>Carlos Silva</strong>
+                                            <span>Igreja Batista Central</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-header">
+                                        <h3>Excelente conteúdo!</h3>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "As aulas são profundas, mas acessíveis. Recomendo para todos que querem crescer na fé."
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <img src="src/assets/avatar/user3.jpg" alt="Ana Santos">
+                                        </div>
+                                        <div class="author-info">
+                                            <strong>Ana Santos</strong>
+                                            <span>Assembleia de Deus</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-header">
+                                        <h3>Excelente conteúdo!</h3>
+                                    </div>
+                                    <p class="testimonial-text">
+                                        "As aulas são profundas, mas acessíveis. Recomendo para todos que querem crescer na fé."
+                                    </p>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <img src="src/assets/avatar/user3.jpg" alt="Ana Santos">
+                                        </div>
+                                        <div class="author-info">
+                                            <strong>Ana Santos</strong>
+                                            <span>Assembleia de Deus</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation buttons -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        
+                        <!-- Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <!-- Scripts -->
     <script type="module" src="src/js/main.js"></script>
 </body>
